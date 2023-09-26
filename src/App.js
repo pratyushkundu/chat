@@ -4,7 +4,10 @@ import io from 'socket.io-client'
 import { useState } from 'react';
 import Chat from './Chat';
 
-const socket = io.connect('https://chatapp-5agj.onrender.com/')
+const socket = io('https://chatapp-ua0x.onrender.com', {
+  transports: ['polling']
+});
+
 function App() {
 
   const [username, setUsername] = useState('')
@@ -14,7 +17,7 @@ function App() {
   const joinRoom = () => {
     if (username !== '' && room !== '') {
       socket.emit('join_room', room);
-      setshowChat(true)
+      setshowChat(true);
     }
   }
   return (
